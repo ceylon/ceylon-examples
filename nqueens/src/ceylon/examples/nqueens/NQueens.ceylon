@@ -11,6 +11,7 @@ void run() {
     print(board);
 }
 
+by "Geoffrey De Smet"
 shared class Board(Integer n_param) {
 
     shared Integer n = n_param;
@@ -83,6 +84,7 @@ shared class Board(Integer n_param) {
 
 }
 
+by "Geoffrey De Smet"
 shared class Queen(Integer column_param) {
 
     shared Integer column = column_param;
