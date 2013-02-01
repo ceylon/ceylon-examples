@@ -1,0 +1,15 @@
+# Generated derived build files (class files, pdf docs, ...)
+/build
+# Non-cleaned local files (benchmarks, notepads, ...)
+/local
+
+# Eclipse, Netbeans and IntelliJ files
+/.*
+!.gitignore
+/nbproject
+/*.ipr
+/*.iws
+/*.iml
+
+# OS: Repository wide ignore mac DS_Store files
+.DS_Store
