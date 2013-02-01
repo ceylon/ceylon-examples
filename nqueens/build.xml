@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CeylonSandbox" default="run" basedir="./">
+
+  <!-- TODO Temporary build file to make it easier for beginners to run this example -->
+
+  <description>
+    Ceylon examples: NQueens
+  </description>
+
+  <!-- TODO Should not be hard coded -->
+  <property name="ceylon.tool" location="/home/gdesmet/opt/build/ceylon/bin/ceylon"/>
+
+  <property name="ceylon.src" location="src/"/>
+  <property name="ceylon.build" location="build"/>
+
+  <property name="ceylon.module.name" value="ceylon.examples.nqueens"/>
+  <property name="ceylon.module.version" value="0.1.0"/>
+
+  <target name="init">
+    <mkdir dir="${ceylon.build}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <exec executable="${ceylon.tool}" failonerror="true">
+      <arg value="compile"/>
+      <arg value="--src=${ceylon.src}"/>
+      <arg value="--out=${ceylon.build}"/>
+      <arg value="${ceylon.module.name}"/>
+    </exec>
+  </target>
+
+  <target name="run" depends="compile">
+    <exec executable="${ceylon.tool}" failonerror="true">
+      <arg value="run"/>
+      <arg value="--rep=${ceylon.build}"/>
+      <arg value="${ceylon.module.name}/${ceylon.module.version}"/>
+    </exec>
+  </target>
+
+  <target name="deploy" depends="compile">
+    <exec executable="${ceylon.tool}" failonerror="true">
+      <arg value="compile"/>
+      <arg value="--src=${ceylon.src}"/>
+      <arg value="--out=http://10.0.1.3:9000/uploads/210/repo/"/>
+      <arg value="--user=ge0ffrey"/>
+      <arg value="--pass=ceylon"/>
+      <arg value="${ceylon.module.name}"/>
+    </exec>
+    <exec executable="${ceylon.tool}" failonerror="true">
+      <arg value="doc"/>
+      <arg value="--src=${ceylon.src}"/>
+      <arg value="--out=http://10.0.1.3:9000/uploads/210/repo/"/>
+      <arg value="--user=ge0ffrey"/>
+      <arg value="--pass=ceylon"/>
+      <arg value="${ceylon.module.name}/${ceylon.module.version}"/>
+    </exec>
+  </target>
+
+  <target name="clean">
+    <delete dir="${ceylon.build}"/>
+  </target>
+</project>
