@@ -33,5 +33,5 @@ shared class Cell(index) {
 	}
 
 	shared actual String string =>
-		"Cell:" (state then "1" else "0") "";
+		"Cell: ``state then 1 else 0``";
 }

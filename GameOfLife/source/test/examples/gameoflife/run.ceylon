@@ -32,7 +32,7 @@ void run() {
 	eval(m5, 6, 8, 12, 16, 18);
 	print(m5);
 	//Print the results
-	print("Assertions: " assertions " failures: " fails "");
+	print("Assertions: ``assertions`` failures: ``fails``");
 }
 
 variable Integer assertions=0;
