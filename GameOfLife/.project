@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>GameOfLife</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.redhat.ceylon.eclipse.ui.ceylonBuilder</name>
+			<arguments>
+				<dictionary>
+					<key>outputPath</key>
+					<value>/GameOfLife/modules</value>
+				</dictionary>
+				<dictionary>
+					<key>repositoryPath</key>
+					<value>/Applications/ceylon-demo/plugins/com.redhat.ceylon.eclipse.ui_1.0.0.v20120823-1312-M4/defaultRepository:/Users/ezamudio/.ceylon/repo</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>com.redhat.ceylon.eclipse.ui.ceylonNature</nature>
+	</natures>
+</projectDescription>
