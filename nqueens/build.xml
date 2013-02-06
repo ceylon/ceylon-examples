@@ -7,8 +7,10 @@
     Ceylon examples: NQueens
   </description>
 
+  <property environment="env" />
+  <property name="ceylon.home" location="${env.CEYLON_HOME}" />
   <!-- TODO Should not be hard coded -->
-  <property name="ceylon.tool" location="/home/gdesmet/opt/build/ceylon/bin/ceylon"/>
+  <property name="ceylon.tool" location="${ceylon.home}/bin/ceylon"/>
 
   <property name="ceylon.src" location="src/"/>
   <property name="ceylon.build" location="build"/>
