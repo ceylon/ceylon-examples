@@ -1,7 +1,11 @@
-import ceylon.examples.gameoflife { Matrix, Cell }
+import ceylon.examples.gameoflife { Matrix, Cell, Sleeper }
 
-Matrix m3 = Matrix(3);
-Matrix m5 = Matrix(5);
+object insomniac satisfies Sleeper {
+    shared actual void sleep(Integer millis) {}
+}
+
+Matrix m3 = Matrix(3, insomniac);
+Matrix m5 = Matrix(5, insomniac);
 
 void noop(Cell c) {}
 
