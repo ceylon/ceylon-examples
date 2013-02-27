@@ -1,11 +1,8 @@
-import java.lang {
-	Thread { sleep }
-}
 
 doc "Represents the Matrix where the game takes place.
      It's a square grid of the specified size."
 by "Enrique Zamudio"
-shared class Matrix(gridSize) satisfies {Cell*} {
+shared class Matrix(gridSize, Sleeper sleeper) satisfies {Cell*} {
 	doc "The number of rows and columns of the Matrix."
 	shared Integer gridSize;
 	value sb = SequenceBuilder<Cell>();
@@ -74,12 +71,12 @@ shared class Matrix(gridSize) satisfies {Cell*} {
 			c.evaluateNextState(getNeighbors(c.index));
 			intermedio(c);
 		}
-		sleep(10);
+		sleeper.sleep(10);
 		for (c in this) {
 			c.evolve();
 			final(c);
 		}
-		sleep(10);
+		sleeper.sleep(10);
 	}
 
 	doc "Sets the state of the cell at the specified index."
