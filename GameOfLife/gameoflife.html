@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Game of Life in Ceylon</title>
+<style type="text/css">
+table.grid {
+  font: 24px sans-serif;
+  border-collapse:collapse;
+  text-align:center;
+  background:#000;
+}
+table.grid,td {
+  border:0px solid black;
+  color: black;
+}
+td.grid {
+  width:20px;
+}
+td.grid2 {
+  background:#aaa;
+  width:20px;
+}
+td.grid3 {
+  background:#ddd;
+  width:20px;
+}
+td.grid4 {
+  background:#fff;
+  width:20px;
+}
+</style>
+<script type="text/javascript" src="http://try.ceylon-lang.org/scripts/require-jquery.js"></script>
+<script type="text/javascript">
+require.config({
+    baseUrl:'modules',
+    paths:{
+        //You could point this to your local copy of the js language module
+		'ceylon/language':'https://trybeta-ceylon.rhcloud.com/scripts/modules/ceylon/language'
+	}
+});
+function createGrid() {
+    require(['ceylon/examples/gameoflife/1.0.0/ceylon.examples.gameoflife-1.0.0'], function(gol) {
+        var s="<tr>";
+        var lim = gol.getLife().gridSize;
+        for (var i=0; i<Math.pow(lim,2); i++) {
+            s += '<td id="c' + i + '" class="grid">&nbsp;</td>';
+            if (i>0 && i%lim==lim-1) {
+                s += "</tr>";
+            }
+        }
+        s += "</tr>"
+        document.getElementById("grid").innerHTML=s;
+        gol.init();
+        setInterval(gol.draw, 100);
+    });
+}
+</script>
+</head><body onload="createGrid()">
+<h1>Game of Life</h1>
+<table class="grid" id="grid">
+<tr><td><b><font color="white">Loading, please wait...</font></b></td></tr>
+</table>
+</body></html>
+
