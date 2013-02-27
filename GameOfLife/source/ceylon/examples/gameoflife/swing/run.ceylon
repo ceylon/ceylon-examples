@@ -1,12 +1,13 @@
 import ceylon.examples.gameoflife { Cell, Matrix }
 import javax.swing { ... }
+import java.lang { Thread { sleep } }
 import java.util { Random }
 import java.awt {
 	GridLayout,
 	Color { black, white, darkGray, lightGray }
 }
 
-object matrix extends Matrix(80, JavaSleeper()) {}
+object matrix extends Matrix(80) {}
 
 JFrame w = JFrame("Game of Life");
 
@@ -24,6 +25,7 @@ void display(JLabel[] labels) {
 		}
 	}
 	matrix.evaluate(colores1, colores2);
+    sleep(10);
 }
 
 doc "Run the module `coderetreat.gameoflife`."
