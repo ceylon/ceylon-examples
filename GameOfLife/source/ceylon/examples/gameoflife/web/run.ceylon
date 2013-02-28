@@ -8,19 +8,21 @@ shared void init(Integer transitionDelay, Integer stateDelay) {
         for (c in life) {
                 c.state = Math.random() > 0.7;
         }
+        value ctx = document.getElementById("grid").getContext("2d");
+        ctx.fillRect(0,0,300,300);
         void draw1(void f())() {
             life.beginEvaluate(void(Cell c) {
-                value td = document.getElementById("c"+c.index.string);
                 if (c.state!=c.nextState) {
-                    td.setAttribute("class", c.state then "grid2" else "grid3");
+                    ctx.fillStyle = c.state then "#800000" else "#c00000";
+                    ctx.fillRect(c.index%life.gridSize * 15, c.index/life.gridSize * 15, 15, 15);
                 }
             });
             setTimeout(f, transitionDelay);
         }
         void draw2() {
             life.finishEvaluate(void(Cell c) {
-                value td = document.getElementById("c"+c.index.string);
-                td.setAttribute("class", c.state then "grid4" else "grid");
+                ctx.fillStyle= c.state then "#ff0000" else "#000000";
+                ctx.fillRect(c.index%life.gridSize * 15, c.index/life.gridSize * 15, 15, 15);
             });
             setTimeout(draw1(draw2), stateDelay);
         }

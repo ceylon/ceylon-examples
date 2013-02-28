@@ -39,24 +39,12 @@ require.config({
 });
 function createGrid() {
     require(['ceylon/examples/gameoflife/1.0.0/ceylon.examples.gameoflife-1.0.0'], function(gol) {
-        var s="<tr>";
-        var lim = gol.getLife().gridSize;
-        for (var i=0; i<Math.pow(lim,2); i++) {
-            s += '<td id="c' + i + '" class="grid">&nbsp;</td>';
-            if (i>0 && i%lim==lim-1) {
-                s += "</tr>";
-            }
-        }
-        s += "</tr>"
-        document.getElementById("grid").innerHTML=s;
         gol.init(90, 150);
     });
 }
 </script>
 </head><body onload="createGrid()">
 <h1>Game of Life</h1>
-<table class="grid" id="grid">
-<tr><td><b><font color="white">Loading, please wait...</font></b></td></tr>
-</table>
+<canvas id="grid" width="300" height="300">
 </body></html>
 
