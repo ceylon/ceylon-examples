@@ -24,8 +24,10 @@ void display(JLabel[] labels) {
 			label.background = c.state then white else black;
 		}
 	}
-	matrix.evaluate(colores1, colores2);
+	matrix.beginEvaluate(colores1);
     sleep(10);
+    matrix.finishEvaluate(colores2);
+    sleep(50);
 }
 
 doc "Run the module `coderetreat.gameoflife`."

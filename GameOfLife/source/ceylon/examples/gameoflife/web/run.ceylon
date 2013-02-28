@@ -10,21 +10,27 @@ shared void init() {
             c.state = c.index%3==0 then (Math.random() > 0.5) else false;
         }
     }
-    draw();
+    draw1();
 }
 
-shared void draw() {
+void draw1() {
     dynamic {
-        void colores1(Cell c) {
+        life.beginEvaluate(void(Cell c) {
             value td = document.getElementById("c"+c.index.string);
             if (c.state!=c.nextState) {
                 td.setAttribute("class", c.state then "grid2" else "grid3");
             }
-        }
-        void colores2(Cell c) {
+        });
+        setTimeout(draw2, 10);
+    }
+}
+
+void draw2() {
+    dynamic {
+        life.finishEvaluate(void(Cell c) {
             value td = document.getElementById("c"+c.index.string);
             td.setAttribute("class", c.state then "grid4" else "grid");
-        }
-        life.evaluate(colores1, colores2);
+        });
+        setTimeout(draw1, 50);
     }
 }

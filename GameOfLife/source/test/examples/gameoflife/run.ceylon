@@ -7,7 +7,8 @@ void noop(Cell c) {}
 
 void eval(Matrix m, Integer* values) {
 	m.init(*values);
-	m.evaluate(noop, noop);
+	m.beginEvaluate(noop);
+    m.finishEvaluate(noop);
 }
 
 doc "Run the module `test.examples.gameoflife`."

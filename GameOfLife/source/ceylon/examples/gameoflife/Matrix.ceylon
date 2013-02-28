@@ -66,14 +66,16 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
 		return r;
 	}
 
-	shared void evaluate(void intermedio(Cell c), void final(Cell c)) {
+    shared void beginEvaluate(void draw(Cell c)) {
 		for (c in this) {
 			c.evaluateNextState(getNeighbors(c.index));
-			intermedio(c);
+			draw(c);
 		}
+    }
+	shared void finishEvaluate(void draw(Cell c)) {
         for (c in this) {
             c.evolve();
-            final(c);
+            draw(c);
         }
 	}
 
