@@ -16,15 +16,15 @@ td.grid {
   width:20px;
 }
 td.grid2 {
-  background:#aaa;
+  background:#800;
   width:20px;
 }
 td.grid3 {
-  background:#ddd;
+  background:#c00;
   width:20px;
 }
 td.grid4 {
-  background:#fff;
+  background:#f00;
   width:20px;
 }
 </style>
@@ -49,8 +49,7 @@ function createGrid() {
         }
         s += "</tr>"
         document.getElementById("grid").innerHTML=s;
-        gol.init();
-        setInterval(gol.draw, 100);
+        gol.init(90, 150);
     });
 }
 </script>
