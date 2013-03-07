@@ -11,8 +11,8 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
     }
     value grid = sb.sequence;
 
-    shared actual Iterator<Cell> iterator =>
-        grid.iterator;
+    shared actual Iterator<Cell> iterator() =>
+        grid.iterator();
 
     doc "Returns the cells to the left and righ of the cell
          at the specified index."
