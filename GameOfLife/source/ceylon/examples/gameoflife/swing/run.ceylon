@@ -30,7 +30,7 @@ void display(JLabel[] labels) {
     sleep(50);
 }
 
-doc "Run the module `coderetreat.gameoflife`."
+"Run the module `coderetreat.gameoflife`."
 void run() {
 	value rng = Random(process.milliseconds);
 	value layout = GridLayout(matrix.gridSize, matrix.gridSize);

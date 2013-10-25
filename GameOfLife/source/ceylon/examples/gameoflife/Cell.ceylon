@@ -1,14 +1,14 @@
-doc "Represents a Cell in a Matrix.
+"Represents a Cell in a Matrix.
      It has a state and a nextState, both of which
      determine if the cell is dead, coming to life,
      dying, or dead."
-by "Enrique Zamudio"
+by("Enrique Zamudio")
 shared class Cell(index) {
-    doc "The index of the Cell inside its Matrix."
+    "The index of the Cell inside its Matrix."
 	shared Integer index;
-    doc "The current state of the Cell."
+    "The current state of the Cell."
 	shared variable Boolean state = false;
-    doc "The next state of the Cell."
+    "The next state of the Cell."
 	variable Boolean ns = false;
 
 	shared Boolean nextState { return ns; }
@@ -16,7 +16,7 @@ shared class Cell(index) {
 		ns = nextState;
 	}
 
-    doc "Evaluates the next state of the Cell, which
+    "Evaluates the next state of the Cell, which
          depends on the states of its neighboring cells."
 	shared void evaluateNextState([Cell+] neighbors) {
 		value alives = neighbors.count((Cell c) => c.state);
@@ -27,7 +27,7 @@ shared class Cell(index) {
 		}
 	}
 
-	doc "Copies the next state to the current state."
+	"Copies the next state to the current state."
 	shared void evolve() {
 		state = ns;
 	}
