@@ -11,7 +11,7 @@ void eval(Matrix m, Integer* values) {
     m.finishEvaluate(noop);
 }
 
-doc "Run the module `test.examples.gameoflife`."
+"Run the module `test.examples.gameoflife`."
 void run() {
 	check(m3.sequence.size == 9, "Matrix of incorrect size [1]");
 	check(m5.sequence.size == 25, "Matrix of incorrect size [2]");

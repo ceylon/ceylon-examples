@@ -1,9 +1,9 @@
 
-doc "Represents the Matrix where the game takes place.
+"Represents the Matrix where the game takes place.
      It's a square grid of the specified size."
-by "Enrique Zamudio"
+by("Enrique Zamudio")
 shared class Matrix(gridSize) satisfies Iterable<Cell> {
-    doc "The number of rows and columns of the Matrix."
+    "The number of rows and columns of the Matrix."
     shared Integer gridSize;
     value sb = SequenceBuilder<Cell>();
     for (i in 0..(gridSize*gridSize-1)) {
@@ -14,7 +14,7 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
     shared actual Iterator<Cell> iterator() =>
         grid.iterator();
 
-    doc "Returns the cells to the left and righ of the cell
+    "Returns the cells to the left and righ of the cell
          at the specified index."
     shared [Cell,Cell] getLeftRightNeighbors(Integer index) {
         variable value i = index - 1;
@@ -32,7 +32,7 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
         return [c1,c2];
     }
 
-    doc "Returns the 8 cells surrounding the one at
+    "Returns the 8 cells surrounding the one at
          the specified index."
     shared [Cell+] getNeighbors(Integer index) {
         value sb = SequenceBuilder<Cell>();
@@ -79,14 +79,14 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
         }
     }
 
-    doc "Sets the state of the cell at the specified index."
+    "Sets the state of the cell at the specified index."
     shared void setState(Integer index, Boolean state = true) {
         if (exists c = grid[index]) {
             c.state = state;
         }
     }
 
-    doc "Prints the matrix, using dots for dead cells
+    "Prints the matrix, using dots for dead cells
          and X for living cells."
     shared actual String string {
         value sb = StringBuilder();
@@ -99,7 +99,7 @@ shared class Matrix(gridSize) satisfies Iterable<Cell> {
         return sb.string;
     }
 
-    doc "Resets all the cells to a dead state, then
+    "Resets all the cells to a dead state, then
          sets the cells at the specified indexes to a
          living state."
     shared void init(Integer* values) {

@@ -2,7 +2,7 @@ import ceylon.examples.gameoflife { Cell, Matrix }
 
 shared Matrix life = Matrix(20);
 
-doc "Initialize the grid with random values"
+"Initialize the grid with random values"
 shared void init(Integer transitionDelay, Integer stateDelay) {
     dynamic {
         for (c in life) {
