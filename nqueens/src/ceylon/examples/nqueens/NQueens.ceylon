@@ -1,25 +1,22 @@
-import ceylon.collection { LinkedList }
 
 void run() {
 
+	doc("Size of the board")
     Integer n = 8;
     Board board = Board(n);
 
     while (!board.feasible()) {
-        board.next();
+         board.next();
     }
-    print(board);
+
+    //print(board);
+    print(board.prettyString);
 }
 
-by "Geoffrey De Smet"
-shared class Board(Integer n_param) {
+class Board(Integer n) {
 
-    shared Integer n = n_param;
-    shared LinkedList<Queen> queens = LinkedList<Queen>();
-
-    for (i in 0..(n-1) ) { // TODO Replace with for (i in 0:n) {
-        queens.add(Queen(i));
-    }
+	// Initialize board with all queens in row 0
+    [Queen*] queens = [ for (i in 0:n) Queen(i) ];
 
     shared Boolean feasible() {
          for (a in queens) {
@@ -38,38 +35,31 @@ shared class Board(Integer n_param) {
 
     void incrementColumn(Integer index) {
         value queen = queens[index];
-        doc "Impossible to increment further"
+        doc("Impossible to increment further")
         assert (exists queen);
 
         queen.row++;
         if (queen.row == n) {
-            queen.row := 0;
+            queen.row = 0;
             incrementColumn(index + 1);
         }
     }
 
-    shared String shortString {
-        variable String s := "Board(";
-        for (queen in queens) {
-            s += queen.row.string;
-        }
-        s += ")";
-        return s;
-    }
+	string => "Board(``{for (q in queens) q.string}``)";
 
-    shared actual String string {
-        variable String s := " ";
+    shared String prettyString {
+        variable String s = " ";
         for (queen in queens) {
             s += "-";
         }
         s += " \n";
-        for (i in 0..(n-1) ) { // TODO Replace with for (i in 0:n) {
+        for (i in 0:n) {
             s += "|";
             for (queen in queens) {
                 if (queen.row == i) {
                     s += "X";
                 } else {
-                    s += " ";
+                    s += ".";
                 }
             }
             s += "|\n";
@@ -84,27 +74,20 @@ shared class Board(Integer n_param) {
 
 }
 
-by "Geoffrey De Smet"
-shared class Queen(Integer column_param) {
 
-    shared Integer column = column_param;
-    shared variable Integer row := 0;
+class Queen(shared Integer column) {
+
+    shared variable Integer row = 0;
 
     shared Boolean canAttack(Queen other) {
         return row == other.row
-                || ascendingD() == other.ascendingD()
-                || descendingD() == other.descendingD();
+                || ascendingD == other.ascendingD
+                || descendingD == other.descendingD;
     }
 
-    Integer ascendingD() {
-        return row + column;
-    }
+    Integer ascendingD => row + column;
 
-    Integer descendingD() {
-        return row - column;
-    }
+    Integer descendingD => row - column;
 
-    shared actual String string {
-        return "Queen(" row ", " column ")";
-    }
+    string => "(``row``,``column``)";
 }
