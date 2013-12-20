@@ -7,58 +7,32 @@
     Ceylon examples: NQueens
   </description>
 
-  <property environment="env" />
-  <property name="ceylon.home" location="${env.CEYLON_HOME}" />
-  <!-- TODO Should not be hard coded -->
-  <property name="ceylon.tool" location="${ceylon.home}/bin/ceylon"/>
+  <property name="ceylon.home" value="/home/me/opt/ceylon-1.0.0" />
+  <property name="ceylon.ant.lib" value="${ceylon.home}/lib/ceylon-ant.jar" />
 
   <property name="ceylon.src" location="src/"/>
-  <property name="ceylon.build" location="build"/>
 
   <property name="ceylon.module.name" value="ceylon.examples.nqueens"/>
-  <property name="ceylon.module.version" value="0.1.0"/>
+  <property name="ceylon.module.version" value="0.1.1"/>
 
-  <target name="init">
-    <mkdir dir="${ceylon.build}"/>
+  <target name="ceylon-ant-taskdefs">
+    <path id="ant-tasks">
+      <pathelement location="${ceylon.ant.lib}" />
+    </path>
+    <typedef resource="com/redhat/ceylon/ant/antlib.xml" classpathref="ant-tasks" />
   </target>
 
-  <target name="compile" depends="init">
-    <exec executable="${ceylon.tool}" failonerror="true">
-      <arg value="compile"/>
-      <arg value="--src=${ceylon.src}"/>
-      <arg value="--out=${ceylon.build}"/>
-      <arg value="${ceylon.module.name}"/>
-    </exec>
+  <target name="compile" depends="ceylon-ant-taskdefs">
+    <ceylon-compile src="${ceylon.src}">
+      <module name="${ceylon.module.name}"/>
+    </ceylon-compile>
   </target>
 
   <target name="run" depends="compile">
-    <exec executable="${ceylon.tool}" failonerror="true">
-      <arg value="run"/>
-      <arg value="--rep=${ceylon.build}"/>
-      <arg value="${ceylon.module.name}/${ceylon.module.version}"/>
-    </exec>
-  </target>
-
-  <target name="deploy" depends="compile">
-    <exec executable="${ceylon.tool}" failonerror="true">
-      <arg value="compile"/>
-      <arg value="--src=${ceylon.src}"/>
-      <arg value="--out=http://10.0.1.3:9000/uploads/210/repo/"/>
-      <arg value="--user=ge0ffrey"/>
-      <arg value="--pass=ceylon"/>
-      <arg value="${ceylon.module.name}"/>
-    </exec>
-    <exec executable="${ceylon.tool}" failonerror="true">
-      <arg value="doc"/>
-      <arg value="--src=${ceylon.src}"/>
-      <arg value="--out=http://10.0.1.3:9000/uploads/210/repo/"/>
-      <arg value="--user=ge0ffrey"/>
-      <arg value="--pass=ceylon"/>
-      <arg value="${ceylon.module.name}/${ceylon.module.version}"/>
-    </exec>
+    <ceylon-run module="${ceylon.module.name}/${ceylon.module.version}"/>
   </target>
 
   <target name="clean">
-    <delete dir="${ceylon.build}"/>
+    <delete dir="modules"/>
   </target>
 </project>
