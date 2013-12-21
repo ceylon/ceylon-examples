@@ -48,28 +48,29 @@ class Board(Integer n) {
 	string => "Board(``{for (q in queens) q.string}``)";
 
     shared String prettyString {
-        variable String s = " ";
+        value sb = StringBuilder();
+        sb.append(" ");
         for (queen in queens) {
-            s += "-";
+            sb.append("-");
         }
-        s += " \n";
+        sb.append(" \n");
         for (i in 0:n) {
-            s += "|";
+            sb.append("|");
             for (queen in queens) {
                 if (queen.row == i) {
-                    s += "X";
+                    sb.append("X");
                 } else {
-                    s += ".";
+                    sb.append(".");
                 }
             }
-            s += "|\n";
+            sb.append("|\n");
         }
-        s += " ";
+        sb.append(" ");
         for (queen in queens) {
-            s += "-";
+            sb.append("-");
         }
-        s += " \n";
-        return s;
+        sb.append(" \n");
+        return sb.string;
     }
 
 }
