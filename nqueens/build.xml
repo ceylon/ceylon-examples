@@ -7,7 +7,10 @@
     Ceylon examples: NQueens
   </description>
 
-  <property name="ceylon.home" value="/home/me/opt/ceylon-1.0.0" />
+  <!-- TODO Should not be using CEYLON_HOME if possible -->
+  <property environment="env" />
+  <property name="ceylon.home" location="${env.CEYLON_HOME}" />
+
   <property name="ceylon.ant.lib" value="${ceylon.home}/lib/ceylon-ant.jar" />
 
   <property name="ceylon.src" location="src/"/>
@@ -23,7 +26,7 @@
   </target>
 
   <target name="compile" depends="ceylon-ant-taskdefs">
-    <ceylon-compile src="${ceylon.src}">
+    <ceylon-compile src="${ceylon.src}" encoding="UTF-8">
       <module name="${ceylon.module.name}"/>
     </ceylon-compile>
   </target>
