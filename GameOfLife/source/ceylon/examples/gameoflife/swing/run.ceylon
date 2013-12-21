@@ -32,7 +32,7 @@ void display(JLabel[] labels) {
 
 "Run the module `coderetreat.gameoflife`."
 void run() {
-	value rng = Random(process.milliseconds);
+	value rng = Random(system.milliseconds);
 	value layout = GridLayout(matrix.gridSize, matrix.gridSize);
 	value sb = SequenceBuilder<JLabel>();
 	w.layout  = layout;
