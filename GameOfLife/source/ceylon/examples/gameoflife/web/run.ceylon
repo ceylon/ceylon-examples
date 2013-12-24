@@ -6,9 +6,9 @@ shared Matrix life = Matrix(20);
 shared void init(Integer transitionDelay, Integer stateDelay) {
     dynamic {
         for (c in life) {
-                c.state = Math.random() > 0.7;
+                c.state = \iMath.random() > 0.7;
         }
-        value ctx = document.getElementById("grid").getContext("2d");
+        dynamic ctx = document.getElementById("grid").getContext("2d");
         ctx.fillRect(0,0,300,300);
         void draw1(void f())() {
             life.beginEvaluate(void(Cell c) {
