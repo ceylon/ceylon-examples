@@ -29,10 +29,16 @@
     <ceylon-compile src="${ceylon.src}" encoding="UTF-8">
       <module name="${ceylon.module.name}"/>
     </ceylon-compile>
+    <ceylon-compile-js src="${ceylon.src}" encoding="UTF-8">
+      <module name="${ceylon.module.name}"/>
+    </ceylon-compile-js>
   </target>
 
   <target name="run" depends="compile">
     <ceylon-run module="${ceylon.module.name}/${ceylon.module.version}"/>
+  </target>
+  <target name="run-js" depends="compile">
+    <ceylon-run-js module="${ceylon.module.name}/${ceylon.module.version}"/>
   </target>
 
   <target name="clean">

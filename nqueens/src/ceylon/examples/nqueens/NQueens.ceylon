@@ -1,5 +1,5 @@
 
-void run() {
+shared void run() {
 
 	doc("Size of the board")
     Integer n = 8;
